@@ -1,12 +1,26 @@
 import jediLogo from "../jedi.svg";
 import MathJediLogo from "../MathJediLogo";
-import React from "react";
+import React, {useCallback} from "react";
 import Button, {ButtonLink} from "../common/Button";
-import {useStudentIsRegistered} from "../App.actions";
+import {useCurrentActiveSession, useStartNewSession, useStudentIsRegistered} from "../App.actions";
 import Vertical from "../common/Vertical";
 
 export default function OpeningScreen() {
     const isRegistered = useStudentIsRegistered();
+    const startNewSession = useStartNewSession();
+    const currentActiveSession = useCurrentActiveSession();
+
+    const handleClick = useCallback(() => {
+        if(currentActiveSession !== null){
+            // eslint-disable-next-line no-restricted-globals
+            if(confirm('This will delete current active session and start a new one ')){
+                startNewSession();
+            }
+        }else{
+            startNewSession();
+        }
+    },[currentActiveSession, startNewSession]);
+
     return <Vertical horizontalAlign={'center'} verticalAlign={'center'} heightFull>
         <Vertical horizontalAlign={'center'} gap={10}>
             <img src={jediLogo} alt="" width={200} height={200}/>
@@ -20,7 +34,10 @@ export default function OpeningScreen() {
                 <ButtonLink to={`/register`}>Settings</ButtonLink>
                 }
                 {isRegistered &&
-                <Button>Start New</Button>
+                <Button onClick={handleClick}>New</Button>
+                }
+                {currentActiveSession !== null &&
+                <Button onClick={handleClick}>Continue</Button>
                 }
             </div>
         </Vertical>

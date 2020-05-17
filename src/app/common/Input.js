@@ -29,7 +29,7 @@ export function InputNumber({style,label,value,onChange, ...props}) {
         setLocalValue(value);
     },[value]);
     const handleChange = useCallback((event) => {
-        let value = event.target.value;
+        let value = parseInt(event.target.value);
         if(onChange){
             onChange({value,oldVal:localValue});
         }else{

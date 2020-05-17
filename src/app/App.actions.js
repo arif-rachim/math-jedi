@@ -1,12 +1,13 @@
 import React, {createContext, useContext, useEffect, useState} from "react";
+import {uuidv4} from "./common/utils";
 
 const DEFAULT_STATE = {
     student: {
         name: '',
-        email: 'raoul.ardy@gmail.com',
+        email: '',
         config: {
-            questionRange: {
-                from: 1,
+            questionsRange: {
+                start: 10,
                 end: 99
             },
             totalSums: 200,
@@ -14,9 +15,10 @@ const DEFAULT_STATE = {
             pauseBetweenQuestionsInMs: 1000,
             percentageOfQuestionInNegative: 30,
         },
+        currentSessionId : null
     },
     sessions: [
-        {
+        /*{
             startAt: '25-JAN-2020T0303020',
             endAt: '25-JAN-2020T03030303',
             questions: [
@@ -34,13 +36,9 @@ const DEFAULT_STATE = {
                     answerAt: '25-JAN-2020T0302032'
                 }
             ]
-        }
+        }*/
     ]
 };
-
-function reducer(state, action) {
-    return state;
-}
 
 const Context = createContext();
 
@@ -80,3 +78,61 @@ export function useUpdateConfiguration(){
 }
 
 
+function buildQuestions({questionsRange:{start,end},totalSums,totalQuestionsEachSum,percentageOfQuestionInNegative}){
+
+    const findNextNumber = ({start,end,percentageOfQuestionInNegative,total,prevNumber}) => {
+
+        const shouldBeNegative = (Math.random() <= (percentageOfQuestionInNegative/100));
+        const candidate = Math.round((Math.random() * (end - start)) + start);
+        const value = candidate * (shouldBeNegative ?  - 1 : 1);
+        if((value + total) < 0){
+            return findNextNumber({start,end,percentageOfQuestionInNegative,total,prevNumber});
+        }
+        if(Math.abs(prevNumber) === candidate ){
+            return findNextNumber({start,end,percentageOfQuestionInNegative,total,prevNumber});
+        }
+        return value;
+    };
+
+    const generateSet = ({start,end,percentageOfQuestionInNegative,totalQuestionsEachSum}) => {
+        const numbers = [];
+        let total = 0;
+        let prevNumber = 0;
+        for(let i = 0;i< totalQuestionsEachSum;i++){
+            const nextNumber = findNextNumber({start,end,percentageOfQuestionInNegative,total,prevNumber});
+            prevNumber = nextNumber;
+            total = total + nextNumber;
+            numbers.push(nextNumber);
+        }
+        return numbers;
+    };
+
+    return  [...Array(totalSums).keys()].map(() => generateSet({totalQuestionsEachSum,percentageOfQuestionInNegative,end,start}));
+}
+
+export function useStartNewSession(){
+    const {setState} = useContext(Context);
+    return () => {
+        setState(state => {
+
+            const filteredSessions = state.sessions.filter(s => s.id !== state.student.currentSessionId);
+
+            const session = {
+                id: uuidv4(),
+                startAt : new Date().toISOString(),
+                endAt : null,
+                questions : buildQuestions(state.student.config),
+                answers : []
+            };
+            const newState = {student:{...state.student},sessions:[...filteredSessions,session]};
+            newState.student.currentSessionId = session.id;
+            return newState;
+        });
+    }
+}
+
+export function useCurrentActiveSession(){
+    const {state} = useContext(Context);
+    const sessions = state?.sessions?.filter(session => session.id === state.student.currentSessionId);
+    return sessions?.length > 0 ? sessions[0] : null;
+}
