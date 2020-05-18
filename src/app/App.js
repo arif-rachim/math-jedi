@@ -2,8 +2,9 @@ import React from "react";
 import OpeningScreen from "./opening-screen/OpeningScreen";
 import AppContextProvider from "./App.actions";
 import {BrowserRouter as Router, Route, Switch} from "react-router-dom";
-import Registration from "./registration/Registration";
+import RegistrationScreen from "./registration-screen/RegistrationScreen";
 import {NotificationContextProvider} from "./common/Notification";
+import SessionScreen from "./session-screen/SessionScreen";
 
 export default function App() {
     return <Router>
@@ -11,7 +12,10 @@ export default function App() {
             <NotificationContextProvider>
                 <Switch>
                     <Route path={"/register"}>
-                        <Registration/>
+                        <RegistrationScreen/>
+                    </Route>
+                    <Route path={"/session/:sessionId"}>
+                        <SessionScreen/>
                     </Route>
                     <Route path={"/"}>
                         <OpeningScreen/>

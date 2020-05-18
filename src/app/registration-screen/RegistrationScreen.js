@@ -23,7 +23,7 @@ const DEFAULT_STATE = {
         percentageOfQuestionInNegative: 30,
     }
 };
-export default function Registration() {
+export default function RegistrationScreen() {
     const [page, setPage] = useState(1);
     const student = useStudent();
     const [state, setState] = useState(student);

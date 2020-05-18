@@ -1,6 +1,6 @@
 import React, {createContext, useContext, useEffect, useState} from "react";
 import {uuidv4} from "./common/utils";
-
+import {useHistory} from 'react-router-dom';
 const DEFAULT_STATE = {
     student: {
         name: '',
@@ -112,13 +112,14 @@ function buildQuestions({questionsRange:{start,end},totalSums,totalQuestionsEach
 
 export function useStartNewSession(){
     const {setState} = useContext(Context);
+    const history = useHistory();
+
     return () => {
+        const sessionId = uuidv4();
         setState(state => {
-
             const filteredSessions = state.sessions.filter(s => s.id !== state.student.currentSessionId);
-
             const session = {
-                id: uuidv4(),
+                id: sessionId,
                 startAt : new Date().toISOString(),
                 endAt : null,
                 questions : buildQuestions(state.student.config),
@@ -128,11 +129,18 @@ export function useStartNewSession(){
             newState.student.currentSessionId = session.id;
             return newState;
         });
+        history.push(`/session/${sessionId}`);
     }
 }
 
 export function useCurrentActiveSession(){
     const {state} = useContext(Context);
     const sessions = state?.sessions?.filter(session => session.id === state.student.currentSessionId);
+    return sessions?.length > 0 ? sessions[0] : null;
+}
+
+export function useSession(sessionId){
+    const {state} = useContext(Context);
+    const sessions = state?.sessions?.filter(session => session.id === sessionId);
     return sessions?.length > 0 ? sessions[0] : null;
 }
