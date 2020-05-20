@@ -7,22 +7,8 @@ import Horizontal from "../common/Horizontal";
 import {useNotification} from "../common/Notification";
 import Vertical from "../common/Vertical";
 import {useStudent, useUpdateConfiguration} from "../App.actions";
-import { useHistory } from "react-router-dom";
+import {useHistory} from "react-router-dom";
 
-const DEFAULT_STATE = {
-    name: '',
-    email: '',
-    config: {
-        questionsRange: {
-            start: 1,
-            end: 99
-        },
-        totalSums: 200,
-        totalQuestionsEachSum: 6,
-        pauseBetweenQuestionsInMs: 1000,
-        percentageOfQuestionInNegative: 30,
-    }
-};
 export default function RegistrationScreen() {
     const [page, setPage] = useState(1);
     const student = useStudent();
@@ -51,7 +37,6 @@ export default function RegistrationScreen() {
     const questionEnd = state?.config.questionsRange?.end;
     const totalSums = state?.config?.totalSums;
     const totalQuestionsEachSum = state?.config?.totalQuestionsEachSum;
-    const pauseBetweenQuestionsInMs = state?.config?.pauseBetweenQuestionsInMs;
     const percentageOfQuestionInNegative = state?.config?.percentageOfQuestionInNegative;
     const validatePage = useCallback(() => {
         switch (page) {
@@ -98,13 +83,7 @@ export default function RegistrationScreen() {
                 }
                 return true;
             }
-            case 6 : {
-                if (!(pauseBetweenQuestionsInMs >= 1000)) {
-                    notification.error('`Pause between session` should be greater than 1000');
-                    return false;
-                }
-                return true;
-            }
+
             case 6 : {
                 if (!(percentageOfQuestionInNegative >= 0 && percentageOfQuestionInNegative <= 100)) {
                     notification.error('`Percentae of Negative Questions` should be between than 0 to 100');
@@ -117,7 +96,7 @@ export default function RegistrationScreen() {
             }
         }
 
-    }, [emailLength, nameLength, notification, page, pauseBetweenQuestionsInMs, percentageOfQuestionInNegative, questionEnd, questionStart, totalQuestionsEachSum, totalSums]);
+    }, [emailLength, nameLength, notification, page, percentageOfQuestionInNegative, questionEnd, questionStart, totalQuestionsEachSum, totalSums]);
 
     const nextPage = useCallback((next) => {
         if (validatePage()) {
@@ -130,7 +109,7 @@ export default function RegistrationScreen() {
         history.push("/");
     },[history, state, updateConfiguration]);
     return <Page>
-        <Vertical heightFull={true} verticalAlign={'center'}>
+        <Vertical heightFull={true} verticalAlign={'center'} style={{padding: '1rem'}}>
             {page === 1 &&
             <Input placeholder={'Name'} autoCaps={false} label={'Enter your Name'} value={state.name}
                    onChange={handleChange('name')}/>
@@ -140,7 +119,7 @@ export default function RegistrationScreen() {
                    onChange={handleChange('email')}/>
             }
             {page === 3 &&
-            <Horizontal gap={20}>
+            <Horizontal gap={10} horizontalAlign={'center'}>
                 <InputNumber label={'Start Range'} value={state?.config?.questionsRange?.start}
                              onChange={handleChange('config.questionsRange.start')}/>
                 <InputNumber label={'End Range'} value={state?.config?.questionsRange?.end}
@@ -155,12 +134,8 @@ export default function RegistrationScreen() {
             <InputNumber label={'Total Questions Each Sum'} value={state?.config?.totalQuestionsEachSum}
                          onChange={handleChange('config.totalQuestionsEachSum')}/>
             }
+
             {page === 6 &&
-            <InputNumber label={'Pause between Questions in millisecond'}
-                         value={state?.config?.pauseBetweenQuestionsInMs}
-                         onChange={handleChange('config.pauseBetweenQuestionsInMs')}/>
-            }
-            {page === 7 &&
             <InputNumber label={'Percentage of Negative Questions'}
                          value={state?.config?.percentageOfQuestionInNegative}
                          onChange={handleChange('config.percentageOfQuestionInNegative')}/>
@@ -171,10 +146,10 @@ export default function RegistrationScreen() {
             <Button onClick={() => nextPage(false)}>Back</Button>
             }
             <Grow/>
-            {page < 7 &&
-                <Button onClick={() => nextPage(true)}>Next</Button>
+            {page < 6 &&
+            <Button onClick={() => nextPage(true)}>Next</Button>
             }
-            {page === 7 &&
+            {page === 6 &&
             <Button onClick={() => saveChanges()}>Save</Button>
             }
         </Page.Actions>

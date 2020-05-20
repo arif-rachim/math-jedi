@@ -1,0 +1,25 @@
+{
+  "files": {
+    "main.css": "/math-jedi/static/css/main.b0ce4647.chunk.css",
+    "main.js": "/math-jedi/static/js/main.7f59e9aa.chunk.js",
+    "main.js.map": "/math-jedi/static/js/main.7f59e9aa.chunk.js.map",
+    "runtime-main.js": "/math-jedi/static/js/runtime-main.11d95851.js",
+    "runtime-main.js.map": "/math-jedi/static/js/runtime-main.11d95851.js.map",
+    "static/js/2.95daeee2.chunk.js": "/math-jedi/static/js/2.95daeee2.chunk.js",
+    "static/js/2.95daeee2.chunk.js.map": "/math-jedi/static/js/2.95daeee2.chunk.js.map",
+    "index.html": "/math-jedi/index.html",
+    "precache-manifest.361c146b4d14a24bcff99befe9fe98b1.js": "/math-jedi/precache-manifest.361c146b4d14a24bcff99befe9fe98b1.js",
+    "service-worker.js": "/math-jedi/service-worker.js",
+    "static/css/main.b0ce4647.chunk.css.map": "/math-jedi/static/css/main.b0ce4647.chunk.css.map",
+    "static/js/2.95daeee2.chunk.js.LICENSE.txt": "/math-jedi/static/js/2.95daeee2.chunk.js.LICENSE.txt",
+    "static/media/startjedi.css": "/math-jedi/static/media/StarJedi.a4eaedfe.woff2",
+    "static/media/SessionScreen.module.css": "/math-jedi/static/media/UCMASKGFontPSMT.f6fa232f.woff",
+    "static/media/jedi.svg": "/math-jedi/static/media/jedi.2c3e13cb.svg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.11d95851.js",
+    "static/js/2.95daeee2.chunk.js",
+    "static/css/main.b0ce4647.chunk.css",
+    "static/js/main.7f59e9aa.chunk.js"
+  ]
+}

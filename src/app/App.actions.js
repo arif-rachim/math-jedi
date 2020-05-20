@@ -1,6 +1,7 @@
-import React, {createContext, useContext, useEffect, useState} from "react";
+import React, {createContext, useCallback, useContext, useEffect, useState} from "react";
 import {uuidv4} from "./common/utils";
 import {useHistory} from 'react-router-dom';
+
 const DEFAULT_STATE = {
     student: {
         name: '',
@@ -12,7 +13,6 @@ const DEFAULT_STATE = {
             },
             totalSums: 200,
             totalQuestionsEachSum: 6,
-            pauseBetweenQuestionsInMs: 1000,
             percentageOfQuestionInNegative: 30,
         },
         currentSessionId : null
@@ -133,14 +133,52 @@ export function useStartNewSession(){
     }
 }
 
-export function useCurrentActiveSession(){
+export function useCurrentActiveSession() {
     const {state} = useContext(Context);
     const sessions = state?.sessions?.filter(session => session.id === state.student.currentSessionId);
     return sessions?.length > 0 ? sessions[0] : null;
 }
 
-export function useSession(sessionId){
+export function useLastSessionId() {
+    const {state} = useContext(Context);
+    return state.sessions && state.sessions.length > 0 ? state.sessions[state.sessions.length - 1].id : null;
+}
+
+export function useSession(sessionId) {
     const {state} = useContext(Context);
     const sessions = state?.sessions?.filter(session => session.id === sessionId);
     return sessions?.length > 0 ? sessions[0] : null;
+}
+
+export function useAnswer(sessionId, questionIndex) {
+    const {setState} = useContext(Context);
+    const startQuestion = new Date();
+    return useCallback((answer) => {
+        setState((oldState) => {
+            const session = oldState.sessions.filter(s => s.id === sessionId)[0];
+            if (session && session.questions && session.questions.length > questionIndex) {
+                const question = session.questions[questionIndex];
+                answer = parseInt(answer);
+                const expectedAnswer = question.reduce((acc, next) => acc + next, 0);
+                const endQuestion = new Date();
+                const answerObject = {
+                    answer: answer,
+                    expected: expectedAnswer,
+                    isCorrect: answer === expectedAnswer,
+                    timeTakenInMs: endQuestion.getTime() - startQuestion.getTime(),
+                    takenAt: startQuestion.toISOString(),
+                    answerAt: endQuestion.toISOString()
+                };
+                const newSessions = {...session, answers: [...session.answers, answerObject]};
+                const isDone = newSessions.questions.length === newSessions.answers.length;
+                newSessions.endAt = isDone ? endQuestion.toISOString() : null;
+                const sessionIndex = oldState.sessions.indexOf(session);
+                return {
+                    student: {...oldState.student, currentSessionId: isDone ? null : oldState.student.currentSessionId},
+                    sessions: [...oldState.sessions.slice(0, sessionIndex), newSessions, ...oldState.sessions.slice(sessionIndex + 1, oldState.sessions.length)]
+                };
+            }
+            return oldState;
+        });
+    }, [questionIndex, sessionId, setState, startQuestion]);
 }

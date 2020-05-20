@@ -1,8 +1,42 @@
-.questionBox{
+@import url('../fonts/ucmas.css');
+
+.questionBox {
     font-size: 20rem;
 }
-.content{
+
+.content {
     display: flex;
     flex-direction: column;
-    align-items: center;
+    align-items: flex-end;
+    height: 100%;
+    flex-grow: 1;
+}
+
+.question {
+    font-family: "UCMAS KG Font";
+    height: 100%;
+    text-align: right;
+    padding-right: 1rem;
+}
+
+.number {
+    text-align: right;
+    border: none;
+    border-top: 1px solid black;
+    background-color: rgba(0, 0, 0, 0.1);
+    width: 100%;
+    font-family: "UCMAS KG Font";
+    padding-right: 1rem;
+}
+
+.number:focus {
+    outline: none;
+}
+
+
+/* Chrome, Safari, Edge, Opera */
+.number::-webkit-outer-spin-button,
+.number::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
 }

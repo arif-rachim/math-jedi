@@ -1,0 +1,8 @@
+@font-face {
+    font-family: 'UCMAS KG Font';
+    src: url('UCMASKGFontPSMT.woff2') format('woff2'),
+    url('UCMASKGFontPSMT.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
