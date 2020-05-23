@@ -107,7 +107,7 @@ export default function RegistrationScreen() {
     const saveChanges = useCallback(() => {
         updateConfiguration(state);
         history.push("/");
-    },[history, state, updateConfiguration]);
+    }, [history, state, updateConfiguration]);
     return <Page>
         <Vertical heightFull={true} verticalAlign={'center'} style={{padding: '1rem'}}>
             {page === 1 &&

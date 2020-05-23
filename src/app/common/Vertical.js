@@ -10,8 +10,8 @@ const VERTICAL_ALIGN = {
     center: 'center',
     bottom: 'flex-end'
 };
-export default function Vertical({children, heightFull, horizontalAlign, verticalAlign, gap,style, ...props}) {
-    const inlineStyle = {display: 'flex',flexDirection: 'column',height: heightFull ? '100%' : 'none'};
+export default function Vertical({children, heightFull, horizontalAlign, verticalAlign, gap, style, ...props}) {
+    const inlineStyle = {display: 'flex', flexDirection: 'column', height: heightFull ? '100%' : 'none'};
     if (horizontalAlign in HORIZONTAL_ALIGN) {
         inlineStyle.alignItems = HORIZONTAL_ALIGN[horizontalAlign];
     }
@@ -27,5 +27,5 @@ export default function Vertical({children, heightFull, horizontalAlign, vertica
             return child;
         })
     }
-    return <div style={{...inlineStyle,...style}} {...props}>{children}</div>
+    return <div style={{...inlineStyle, ...style}} {...props}>{children}</div>
 }

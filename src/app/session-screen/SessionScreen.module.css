@@ -27,6 +27,7 @@
     width: 100%;
     font-family: "UCMAS KG Font";
     padding-right: 1rem;
+    transition: all 200ms cubic-bezier(0, 0, 0.7, 0.8);
 }
 
 .number:focus {

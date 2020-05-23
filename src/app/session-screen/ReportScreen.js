@@ -15,74 +15,27 @@ function formatDdMmmYyyyHhMmSs(date) {
     return `${append(date.getDate())}-${months[date.getMonth() + 1]}-${date.getFullYear()} ${append(date.getHours())}:${append(date.getMinutes())}`
 }
 
-function getComments(score) {
-    if (score < 70) {
-        return 'Nice Try'
-    }
-    if (score < 80) {
-        return 'Terrific'
-    }
-    if (score < 90) {
-        return 'Fantastic'
-    }
-    if (score < 100) {
-        return 'Fabulous'
-    }
-    if (score === 100) {
-        return 'Spectacular'
-    }
-}
+const ONE_MINUTE = (1000 * 60);
 
-
-function getBadgeColor(score) {
-    if (score < 70) {
-        return 'rgba(122,41,123,0.8)';
-    }
-    if (score < 80) {
-        return 'rgba(41,100,123,0.8)';
-    }
-    if (score < 90) {
-        return 'rgba(122,123,41,0.8)';
-    }
-    if (score < 100) {
-        return 'rgba(181,182,47,0.8)';
-    }
-    if (score === 100) {
-        return 'rgba(208,162,30,0.8)';
-    }
+function convertToTime(time) {
+    const minutes = (time / ONE_MINUTE).toFixed(0);
+    const seconds = ((time % ONE_MINUTE) / 1000).toFixed(1);
+    return `${minutes} Minutes ${seconds} Seconds`
 }
 
 export default function ReportScreen({session}) {
     const history = useHistory();
-    const score = (session.answers.filter(s => s.isCorrect).length / session.answers.length) * 100;
+
+    const timeTaken = session.answers.reduce((acc, next) => acc + next.timeTakenInMs, 0);
+
+    const time = convertToTime(timeTaken);
 
     return <Page>
         <Horizontal verticalAlign={'bottom'}>
-            <div style={{fontSize: '3rem', marginBottom: '1rem'}}>Report</div>
-            <Grow/>
-            <span>
-            <div style={{
-                fontSize: '5rem',
-                border: `3px dashed ${getBadgeColor(score)}`,
-                borderRadius: 150,
-                width: 150,
-                height: 150,
-                textAlign: 'center',
-                paddingTop: 13,
-                color: getBadgeColor(score),
-                boxShadow: `inset 0px 0px 80px 10px ${getBadgeColor(score)}`,
-                margin: 10
-            }}>
-                {score.toFixed(0)}
-            </div>
-                <div style={{textAlign: 'center', fontSize: '1.5rem', marginBottom: '1rem'}}>
-                {getComments(score)} !!
-                </div>
-                </span>
+            <div style={{fontSize: '2rem'}}>{time}</div>
             <Grow/>
             <div style={{
-                fontSize: '1.5rem',
-                marginBottom: '1rem'
+                fontSize: '1.5rem'
             }}>{formatDdMmmYyyyHhMmSs(new Date(session.startAt))}</div>
         </Horizontal>
         <div>
@@ -99,7 +52,7 @@ export default function ReportScreen({session}) {
                 <tbody>
                 {session.questions.map((question, index) => {
                     const {timeTakenInMs, answer, expected, isCorrect} = session.answers[index];
-                    return <tr data-isCorrect={isCorrect}>
+                    return <tr key={index} data-iscorrect={isCorrect}>
                         <td style={{textAlign: 'center'}}>{index + 1}</td>
                         <td style={{textAlign: 'right'}}>{question.join(', ')}</td>
                         <td style={{textAlign: 'center'}}>{expected}</td>

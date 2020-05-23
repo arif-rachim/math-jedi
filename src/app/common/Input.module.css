@@ -1,7 +1,8 @@
-.root{
+.root {
     display: flex;
     flex-direction: column;
 }
+
 .input {
     padding: 5px 10px;
     font-size: 3rem;
@@ -30,7 +31,7 @@
     -moz-appearance: textfield;
 }
 
-.label{
+.label {
     font-size: 1.2rem;
     margin-bottom: 0.4rem;
 }

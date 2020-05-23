@@ -1,23 +1,23 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "c26bb7fbd1d255c10f80320e372e6503",
+    "revision": "84ac8e69df42805262da2d883a03c4f2",
     "url": "/math-jedi/index.html"
   },
   {
-    "revision": "dff249da0c5be8c2c99e",
-    "url": "/math-jedi/static/css/main.b0ce4647.chunk.css"
+    "revision": "852819ee9e41ea72860c",
+    "url": "/math-jedi/static/css/main.d297bc4c.chunk.css"
   },
   {
-    "revision": "81dcf12fd81040910d66",
-    "url": "/math-jedi/static/js/2.95daeee2.chunk.js"
+    "revision": "7bfeb5f976c0deeb06c0",
+    "url": "/math-jedi/static/js/2.3aa649d6.chunk.js"
   },
   {
     "revision": "c64c486544348f10a6d6c716950bc223",
-    "url": "/math-jedi/static/js/2.95daeee2.chunk.js.LICENSE.txt"
+    "url": "/math-jedi/static/js/2.3aa649d6.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "dff249da0c5be8c2c99e",
-    "url": "/math-jedi/static/js/main.7f59e9aa.chunk.js"
+    "revision": "852819ee9e41ea72860c",
+    "url": "/math-jedi/static/js/main.be12223d.chunk.js"
   },
   {
     "revision": "226b137c2d59e2391b29",
@@ -40,7 +40,7 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/math-jedi/static/media/UCMASKGFontPSMT.f6fa232f.woff"
   },
   {
-    "revision": "2c3e13cb1d18d8c1a87a96310380dc77",
-    "url": "/math-jedi/static/media/jedi.2c3e13cb.svg"
+    "revision": "c1bafbcf3211a6b2af4b2ab363789ac8",
+    "url": "/math-jedi/static/media/jedi.c1bafbcf.svg"
   }
 ]);

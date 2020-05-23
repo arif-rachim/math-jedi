@@ -1,14 +1,14 @@
 import React from "react";
 import classes from './Page.module.css';
 
-function Page({children,contentProps}) {
+function Page({children, contentProps}) {
     const content = children.filter(c => !(c.type === Actions));
     const actions = children.filter(c => c.type === Actions);
     const hasActions = actions.length > 0;
     return <div className={classes.root}>
-            <div className={classes.content} {...contentProps}>{content}</div>
-            {hasActions && actions}
-        </div>
+        <div className={classes.content} {...contentProps}>{content}</div>
+        {hasActions && actions}
+    </div>
 }
 
 const ACTIONS_ALIGN = {

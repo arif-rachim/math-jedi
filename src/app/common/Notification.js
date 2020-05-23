@@ -24,7 +24,7 @@ function Notification({style, notification: {message, closeNotification, id, typ
         <div>
             {message}
         </div>
-        <FontAwesomeIcon icon={faTimesCircle} size="1x" style={{cursor:'pointer'}} onClick={closeNotification}/>
+        <FontAwesomeIcon icon={faTimesCircle} size="1x" style={{cursor: 'pointer'}} onClick={closeNotification}/>
     </Horizontal>
 }
 
