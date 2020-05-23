@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "/math-jedi/precache-manifest.471dca75fba1159c8925b6150c53666a.js"
+  "/math-jedi/precache-manifest.d6397d6014344176bd8d0339b02564d1.js"
 );
 
 self.addEventListener('message', (event) => {

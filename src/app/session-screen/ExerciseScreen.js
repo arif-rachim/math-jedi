@@ -8,6 +8,7 @@ import Button from "../common/Button";
 import ProgressPie from "./ProgressPie";
 
 const ENTER_KEY = 13;
+
 export default function ExerciseScreen({currentActiveSession}) {
 
     const questionIndex = currentActiveSession.answers.length;
@@ -20,9 +21,10 @@ export default function ExerciseScreen({currentActiveSession}) {
     const answerRef = useRef();
     const nextQuestionsToBeAnsweredLength = nextQuestionsToBeAnswered.length;
     useEffect(() => {
-        function updateFontSize(height) {
-            setFontSize((height * 0.9) / (nextQuestionsToBeAnsweredLength + 1));
-        }
+
+        const updateFontSize = (height) => {
+            setFontSize((height * 0.8) / (nextQuestionsToBeAnsweredLength + 1));
+        };
 
         const resizeObserver = new ResizeObserver(entries => {
             for (let entry of entries) {
@@ -48,9 +50,11 @@ export default function ExerciseScreen({currentActiveSession}) {
     const expectedAnswer = nextQuestionsToBeAnswered.reduce((acc, next) => acc + next);
     return <Page><label style={{width: '100%', height: '100%'}}>
         <Horizontal style={{height: '100%'}}>
-            <div className={classes.content}>
-                <div ref={contentRef} className={classes.question} style={questionStyle}>
-                    {nextQuestionsToBeAnswered.map(((question, index) => <div key={index}>{question}</div>))}
+            <div ref={contentRef} className={classes.content}>
+                <div style={{height: '100%', overflow: 'auto'}}>
+                    <div className={classes.question} style={questionStyle}>
+                        {nextQuestionsToBeAnswered.map(((question, index) => <div key={index}>{question}</div>))}
+                    </div>
                 </div>
                 <input ref={answerRef} type="number" className={classes.number} style={{
                     fontSize: fontSize,

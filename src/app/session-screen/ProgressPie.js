@@ -5,8 +5,7 @@ import Vertical from "../common/Vertical";
 function formatTime(timer) {
     const mins = (timer / 60).toFixed(0);
     const seconds = Math.round(timer % 60);
-
-    return `${mins}:${seconds < 9 ? `0${seconds}` : seconds}`;
+    return `${mins}:${seconds < 10 ? `0${seconds}` : seconds}`;
 }
 
 export default function ProgressPie({style, value}) {
