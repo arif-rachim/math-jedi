@@ -1,14 +1,14 @@
 {
   "files": {
     "main.css": "/math-jedi/static/css/main.d297bc4c.chunk.css",
-    "main.js": "/math-jedi/static/js/main.43049460.chunk.js",
-    "main.js.map": "/math-jedi/static/js/main.43049460.chunk.js.map",
+    "main.js": "/math-jedi/static/js/main.4238354a.chunk.js",
+    "main.js.map": "/math-jedi/static/js/main.4238354a.chunk.js.map",
     "runtime-main.js": "/math-jedi/static/js/runtime-main.11d95851.js",
     "runtime-main.js.map": "/math-jedi/static/js/runtime-main.11d95851.js.map",
     "static/js/2.3aa649d6.chunk.js": "/math-jedi/static/js/2.3aa649d6.chunk.js",
     "static/js/2.3aa649d6.chunk.js.map": "/math-jedi/static/js/2.3aa649d6.chunk.js.map",
     "index.html": "/math-jedi/index.html",
-    "precache-manifest.b98878d91f406a5b514c6c24a4e26466.js": "/math-jedi/precache-manifest.b98878d91f406a5b514c6c24a4e26466.js",
+    "precache-manifest.beff8fb6e2f997c8f7ede280d5629e56.js": "/math-jedi/precache-manifest.beff8fb6e2f997c8f7ede280d5629e56.js",
     "service-worker.js": "/math-jedi/service-worker.js",
     "static/css/main.d297bc4c.chunk.css.map": "/math-jedi/static/css/main.d297bc4c.chunk.css.map",
     "static/js/2.3aa649d6.chunk.js.LICENSE.txt": "/math-jedi/static/js/2.3aa649d6.chunk.js.LICENSE.txt",
@@ -20,6 +20,6 @@
     "static/js/runtime-main.11d95851.js",
     "static/js/2.3aa649d6.chunk.js",
     "static/css/main.d297bc4c.chunk.css",
-    "static/js/main.43049460.chunk.js"
+    "static/js/main.4238354a.chunk.js"
   ]
 }

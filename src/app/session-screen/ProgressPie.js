@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from "react";
+import React from "react";
 import ReactSvgPieChart from 'react-svg-piechart';
 import Vertical from "../common/Vertical";
 
@@ -9,15 +9,7 @@ function formatTime(timer) {
 }
 
 export default function ProgressPie({style, value}) {
-    const [timer, setTimer] = useState(0);
-    useEffect(() => {
-        const intervaliId = setInterval(() => {
-            setTimer((val) => ++val);
-        }, 1000);
-        return () => {
-            clearInterval(intervaliId);
-        };
-    }, []);
+
     return <div style={{
         position: 'absolute',
         width: 100,
@@ -37,7 +29,7 @@ export default function ProgressPie({style, value}) {
             borderRadius: 100
         }}>
             <Vertical heightFull={true} style={{fontSize: 22}} verticalAlign={'center'} horizontalAlign={'center'}>
-                {formatTime(timer)}
+
             </Vertical>
         </div>
     </div>
