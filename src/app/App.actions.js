@@ -146,6 +146,9 @@ export function useAnswer(sessionId, questionIndex) {
     return useMemo(() => {
         const startQuestion = new Date();
         return (answer) => {
+            if (answer === undefined || answer === '' || answer === null) {
+                return;
+            }
             setState((oldState) => {
                 const session = oldState.sessions.filter(s => s.id === sessionId)[0];
                 if (session && session.questions && session.questions.length > questionIndex) {
