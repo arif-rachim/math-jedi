@@ -11,6 +11,7 @@ const VERTICAL_ALIGN = {
     bottom: 'flex-end'
 };
 export default function Vertical({children, heightFull, horizontalAlign, verticalAlign, gap, style,visible=true, ...props}) {
+
     const inlineStyle = {display: visible === false ? 'none' : 'flex' , flexDirection: 'column', height: heightFull ? '100%' : 'none'};
     if (horizontalAlign in HORIZONTAL_ALIGN) {
         inlineStyle.alignItems = HORIZONTAL_ALIGN[horizontalAlign];

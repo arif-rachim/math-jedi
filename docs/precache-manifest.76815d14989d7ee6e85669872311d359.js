@@ -1,10 +1,10 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "24058a166c65087ce6dc41a5f9cd8e6d",
+    "revision": "47a6c594e4ca96db81c240024f2406f5",
     "url": "/math-jedi/index.html"
   },
   {
-    "revision": "8c9621f774975f245f06",
+    "revision": "4e8b326b74443fc708c4",
     "url": "/math-jedi/static/css/main.1f167c71.chunk.css"
   },
   {
@@ -16,8 +16,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/math-jedi/static/js/2.591223a9.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "8c9621f774975f245f06",
-    "url": "/math-jedi/static/js/main.5d1dea56.chunk.js"
+    "revision": "4e8b326b74443fc708c4",
+    "url": "/math-jedi/static/js/main.994f9e4d.chunk.js"
   },
   {
     "revision": "226b137c2d59e2391b29",

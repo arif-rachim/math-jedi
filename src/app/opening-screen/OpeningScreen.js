@@ -26,7 +26,6 @@ export default function OpeningScreen() {
     const handleContinue = useCallback(() => {
         history.push(`/session/${activeSessionId}`);
     }, [activeSessionId, history]);
-
     return <Vertical horizontalAlign={'center'} verticalAlign={'center'} heightFull>
         <Vertical horizontalAlign={'center'} gap={10}>
             <img src={jediLogo} alt="" width={200} height={200}/>
@@ -34,8 +33,8 @@ export default function OpeningScreen() {
             <div style={{fontSize: 25, marginTop: 0}}>May the force be with you</div>
 
             <Vertical gap={5}>
-                <Vertical visible={isRegistered}>
-                    <ButtonLink to={`/register`} v>Register</ButtonLink>
+                <Vertical visible={!isRegistered}>
+                    <ButtonLink to={`/register`}>Register</ButtonLink>
                 </Vertical>
                 <Vertical visible={isRegistered}>
                     <ButtonLink to={`/register`}>Settings</ButtonLink>
