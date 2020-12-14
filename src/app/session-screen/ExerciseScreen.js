@@ -21,7 +21,7 @@ export default function ExerciseScreen({currentActiveSession}) {
     const answerRef = useRef();
     const nextQuestionsToBeAnsweredLength = nextQuestionsToBeAnswered.length;
     useEffect(() => {
-
+        const content = contentRef.current;
         const updateFontSize = (height) => {
             setFontSize((height * 0.8) / (nextQuestionsToBeAnsweredLength + 1));
         };
@@ -31,9 +31,9 @@ export default function ExerciseScreen({currentActiveSession}) {
                 updateFontSize(entry.contentRect.height);
             }
         });
-        resizeObserver.observe(contentRef.current);
+        resizeObserver.observe(content);
         return () => {
-            resizeObserver.unobserve(contentRef.current);
+            resizeObserver.unobserve(content);
         }
     }, [nextQuestionsToBeAnsweredLength]);
 

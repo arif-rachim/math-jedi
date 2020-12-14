@@ -8,6 +8,7 @@
     font-weight: inherit !important;
     cursor: pointer;
     text-align: center;
+    border-radius: 20px;
 }
 
 .button:focus {

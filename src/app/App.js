@@ -1,13 +1,13 @@
 import React from "react";
 import OpeningScreen from "./opening-screen/OpeningScreen";
 import AppContextProvider from "./App.actions";
-import {BrowserRouter as Router, Route, Switch} from "react-router-dom";
+import {HashRouter as Router, Route, Switch} from "react-router-dom";
 import RegistrationScreen from "./registration-screen/RegistrationScreen";
 import {NotificationContextProvider} from "./common/Notification";
 import SessionScreen from "./session-screen/SessionScreen";
 
 export default function App() {
-    return <Router>
+    return <Router >
         <AppContextProvider>
             <NotificationContextProvider>
                 <Switch>

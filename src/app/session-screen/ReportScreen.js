@@ -12,7 +12,7 @@ const months = ["JAN", "FEB", "MAR", "APR", "MAY", "JUN", "JUL", "AUG", "SEP", "
 
 function formatDdMmmYyyyHhMmSs(date) {
     const append = (n) => n <= 9 ? `0${n}` : n.toString();
-    return `${append(date.getDate())}-${months[date.getMonth() + 1]}-${date.getFullYear()} ${append(date.getHours())}:${append(date.getMinutes())}`
+    return `${append(date.getDate())}-${months[date.getMonth()]}-${date.getFullYear()} ${append(date.getHours())}:${append(date.getMinutes())}`
 }
 
 const ONE_MINUTE = (1000 * 60);

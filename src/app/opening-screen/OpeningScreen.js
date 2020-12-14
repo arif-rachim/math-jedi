@@ -33,22 +33,22 @@ export default function OpeningScreen() {
             <MathJediLogo/>
             <div style={{fontSize: 25, marginTop: 0}}>May the force be with you</div>
 
-            <Vertical>
-                {!isRegistered &&
-                <ButtonLink to={`/register`}>Register</ButtonLink>
-                }
-                {isRegistered &&
-                <ButtonLink to={`/register`}>Settings</ButtonLink>
-                }
-                {currentActiveSession !== null &&
-                <Button onClick={handleContinue}>Continue</Button>
-                }
-                {lastSessionId !== null &&
-                <Button onClick={() => history.push(`/session/${lastSessionId}`)}>Last Score</Button>
-                }
-                {isRegistered &&
-                <Button onClick={handleClick}>New</Button>
-                }
+            <Vertical gap={5}>
+                <Vertical visible={isRegistered}>
+                    <ButtonLink to={`/register`} v>Register</ButtonLink>
+                </Vertical>
+                <Vertical visible={isRegistered}>
+                    <ButtonLink to={`/register`}>Settings</ButtonLink>
+                </Vertical>
+                <Vertical visible={currentActiveSession !== null}>
+                    <Button onClick={handleContinue}>Continue</Button>
+                </Vertical>
+                <Vertical visible={lastSessionId !== null}>
+                    <Button onClick={() => history.push(`/session/${lastSessionId}`)}>Last Score</Button>
+                </Vertical>
+                <Vertical visible={isRegistered}>
+                    <Button onClick={handleClick}>New</Button>
+                </Vertical>
             </Vertical>
         </Vertical>
 

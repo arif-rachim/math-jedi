@@ -2,11 +2,6 @@ import React from "react";
 import ReactSvgPieChart from 'react-svg-piechart';
 import Vertical from "../common/Vertical";
 
-function formatTime(timer) {
-    const mins = (timer / 60).toFixed(0);
-    const seconds = Math.round(timer % 60);
-    return `${mins}:${seconds < 10 ? `0${seconds}` : seconds}`;
-}
 
 export default function ProgressPie({style, value}) {
 
@@ -29,7 +24,6 @@ export default function ProgressPie({style, value}) {
             borderRadius: 100
         }}>
             <Vertical heightFull={true} style={{fontSize: 22}} verticalAlign={'center'} horizontalAlign={'center'}>
-
             </Vertical>
         </div>
     </div>

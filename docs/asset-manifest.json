@@ -1,25 +1,25 @@
 {
   "files": {
-    "main.css": "/math-jedi/static/css/main.d297bc4c.chunk.css",
-    "main.js": "/math-jedi/static/js/main.4238354a.chunk.js",
-    "main.js.map": "/math-jedi/static/js/main.4238354a.chunk.js.map",
+    "main.css": "/math-jedi/static/css/main.1f167c71.chunk.css",
+    "main.js": "/math-jedi/static/js/main.5d1dea56.chunk.js",
+    "main.js.map": "/math-jedi/static/js/main.5d1dea56.chunk.js.map",
     "runtime-main.js": "/math-jedi/static/js/runtime-main.11d95851.js",
     "runtime-main.js.map": "/math-jedi/static/js/runtime-main.11d95851.js.map",
-    "static/js/2.3aa649d6.chunk.js": "/math-jedi/static/js/2.3aa649d6.chunk.js",
-    "static/js/2.3aa649d6.chunk.js.map": "/math-jedi/static/js/2.3aa649d6.chunk.js.map",
+    "static/js/2.591223a9.chunk.js": "/math-jedi/static/js/2.591223a9.chunk.js",
+    "static/js/2.591223a9.chunk.js.map": "/math-jedi/static/js/2.591223a9.chunk.js.map",
     "index.html": "/math-jedi/index.html",
-    "precache-manifest.beff8fb6e2f997c8f7ede280d5629e56.js": "/math-jedi/precache-manifest.beff8fb6e2f997c8f7ede280d5629e56.js",
+    "precache-manifest.125ac113fcf41af126658a0decc0031b.js": "/math-jedi/precache-manifest.125ac113fcf41af126658a0decc0031b.js",
     "service-worker.js": "/math-jedi/service-worker.js",
-    "static/css/main.d297bc4c.chunk.css.map": "/math-jedi/static/css/main.d297bc4c.chunk.css.map",
-    "static/js/2.3aa649d6.chunk.js.LICENSE.txt": "/math-jedi/static/js/2.3aa649d6.chunk.js.LICENSE.txt",
+    "static/css/main.1f167c71.chunk.css.map": "/math-jedi/static/css/main.1f167c71.chunk.css.map",
+    "static/js/2.591223a9.chunk.js.LICENSE.txt": "/math-jedi/static/js/2.591223a9.chunk.js.LICENSE.txt",
     "static/media/startjedi.css": "/math-jedi/static/media/StarJedi.a4eaedfe.woff2",
     "static/media/SessionScreen.module.css": "/math-jedi/static/media/UCMASKGFontPSMT.f6fa232f.woff",
-    "static/media/jedi.svg": "/math-jedi/static/media/jedi.c1bafbcf.svg"
+    "static/media/jedi.svg": "/math-jedi/static/media/jedi.3a436b82.svg"
   },
   "entrypoints": [
     "static/js/runtime-main.11d95851.js",
-    "static/js/2.3aa649d6.chunk.js",
-    "static/css/main.d297bc4c.chunk.css",
-    "static/js/main.4238354a.chunk.js"
+    "static/js/2.591223a9.chunk.js",
+    "static/css/main.1f167c71.chunk.css",
+    "static/js/main.5d1dea56.chunk.js"
   ]
 }
