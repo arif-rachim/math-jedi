@@ -1,68 +1,54 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Math Jedi
 
-## Available Scripts
+Math Jedi is a browser app for drilling the long addition and subtraction sums used in abacus and mental-arithmetic training, where a student adds a vertical column of numbers, some of them negative, in their head. After a one-time setup that asks for the student's name and email and lets you pick the number range, the number of sums per session, the numbers per sum and the share of negative numbers, it generates a fresh set of sums for every session and shows them one at a time in the UCMAS-style digit font. The student types each total, and when the session ends a report lists every sum with the expected total, the given answer and the seconds it took, with wrong answers highlighted. Everything, including unfinished sessions, is saved in the browser's `localStorage`, so there is no server or account. It is a small React 16 single-page app made with Create React App and published on GitHub Pages, built with a Jedi theme ("May the force be with you") between May and December 2020 and unchanged since.
 
-In the project directory, you can run:
+> Personal project from 2020. Not actively maintained.
 
-### `npm start`
+**Live demo:** https://www.rach.im/math-jedi/
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## Features
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+- Settings wizard (one field per step, with validation): name, email, number range (default 10 to 99), sums per session (default 200), numbers per sum (default 6) and percentage of negative numbers (default 30%)
+- Sums are generated so the running total never goes below zero, with no multiples of 10 or 11 and no number repeated back to back
+- Question column and answer box scale their font size to the screen height; the answer box turns teal when the typed total is correct
+- Answer with Enter or the Next button; a progress ring shows how far through the session the student is
+- Continue an unfinished session, start a new one (which discards the unfinished one after a confirmation), or reopen the last score
+- Session report with total time and a per-sum table: numbers, expected total, given answer and time in seconds, with wrong answers highlighted
+- State kept in `localStorage` under the `math-jedi` key
 
-### `npm test`
+## Tech stack
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+React 16 · React Router 5 (hash routing) · react-svg-piechart · Font Awesome · CSS Modules · Create React App (react-scripts 3.4) · GitHub Pages
 
-### `npm run build`
+## Getting started
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Prerequisites: Node.js and npm.
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
+```bash
+npm install
+npm start          # dev server on http://localhost:3000
+npm run build      # production build, then renames build/ to docs/ for GitHub Pages
+npm test           # Create React App test runner (no tests are committed)
+```
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+The `build` script calls the `rename` command. On Linux or macOS, delete the old `docs/` folder and run `mv build docs` yourself if `rename` is not available or behaves differently.
 
-### `npm run eject`
+## Project structure
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
-
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `npm run build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+```text
+src/
+  index.js                      mounts <App/>
+  app/
+    App.js                      hash routes: / , /register , /session/:sessionId
+    App.actions.js              context, localStorage persistence, sum generator, answer recording
+    opening-screen/             home screen: Register/Settings, Continue, Last Score, New
+    registration-screen/        step-by-step settings wizard
+    session-screen/
+      SessionScreen.js          shows the exercise or, once finished, the report
+      ExerciseScreen.js         one sum at a time with answer input
+      ReportScreen.js           session summary table
+      ProgressPie.js            progress ring
+    common/                     layout primitives, button, input, notifications
+    fonts/                      StarJedi and UCMAS KG web fonts
+docs/                           built site served by GitHub Pages
+```
